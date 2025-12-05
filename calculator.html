@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <link rel="stylesheet" href="calaculate.css"> 
+    </head>
+<body>
+</body>
+<div class="form-container">
+    <h1 class="vertical-heading">Calaculate marks</h1>
+
+
+   <div>
+       <label>Math:</label>
+       <input id="math" type="number"><br><br>
+
+       <div>
+          <label>Science:</label>
+           <input id="science" type="number"><br><br>
+
+            <div>
+             <label>English:</label>
+                <input id="english" type="number"><br><br>
+                <div class="btn-div">
+                    <button onclick="calculateTotal()">Calculate Total</button>
+                </div>
+                 
+
+                    <div>
+                        <h3 id="result"></h3>
+                    </div>    
+
+            </div>
+            
+         </div>
+     </div>
+
+
+
+</div>
+<script>
+function calculateTotal() {
+   
+    let math = parseFloat(document.getElementById("math").value) || 0;
+    let science = parseFloat(document.getElementById("science").value) || 0;
+    let english = parseFloat(document.getElementById("english").value) || 0;
+
+  
+    let total = math + science + english;
+
+    
+    document.getElementById("result").innerHTML =
+        `<span style="color: blue; font-weight: bold;">Total Marks: ${total}</span>`;
+}
+</script>
+
+</body>
+</html>
