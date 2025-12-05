@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Extension Check</title>
+</head>
+<body>
+
+    <h2>Upload File</h2>
+
+    <input type="file" id="myFile">
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("myFile").addEventListener("change", function () {
+         
+         
+            let file = this.value;  // selected file path
+           
+           
+           
+            let ext = file.split('.').pop().toLowerCase(); // extract extension
+            
+            let allowed = ["jpg", "png", "jpeg"];
+
+            if (allowed.includes(ext)) {
+                document.getElementById("result").innerHTML = 
+                    "✔ Valid file uploaded: ." + ext;
+                document.getElementById("result").style.color = "green";
+            } else {
+                document.getElementById("result").innerHTML = 
+                    "❌ Wrong file! Allowed: .jpg, .png, .jpeg";
+                document.getElementById("result").style.color = "red";
+            }
+        });
+    </script>
+
+</body>
+</html>
