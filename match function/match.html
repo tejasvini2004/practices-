@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Password Strength Form</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: hsl(0, 0%, 96%);
+        padding: 30px;
+    }
+
+    .form-box {
+        width: 350px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ccc;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #777;
+    }
+
+    #progress-bar {
+        height: 10px;
+        width: 100%;
+        background: #eee;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+    #progress-fill {
+        height: 100%;
+        width: 0%;
+        background: red;
+        transition: 0.4s;
+    }
+
+    #strength-text {
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="form-box">
+    <h2>Create Account</h2>
+
+
+    <label>Email:</label>
+    <input type="text" id="email" placeholder="Enter your email">
+    <span id="email-msg"></span>
+
+  
+    <label>Password:</label>
+    <input type="password" id="password" placeholder="Enter password">
+
+  
+    <div id="progress-bar">
+        <div id="progress-fill"></div>
+    </div>
+    <span id="strength-text"></span>
+
+    <button onclick="submitForm()">Submit</button>
+</div>
+
+
+<script>
+
+document.getElementById("email").addEventListener("keyup", () => {
+    let email = document.getElementById("email").value;
+    let msg = document.getElementById("email-msg");
+
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (email.match(emailPattern)) {
+        msg.innerHTML = " Valid Email";
+        msg.style.color = "green";
+    } else {
+        msg.innerHTML = "Invalid Email";
+        msg.style.color = "red";
+    }
+});
+
+
+
+document.getElementById("password").addEventListener("keyup", () => {
+
+    let pass = document.getElementById("password").value;
+    let fill = document.getElementById("progress-fill");
+    let text = document.getElementById("strength-text");
+
+    let strength = 0;
+
+ 
+    if (pass.match(/[a-z]/)) strength += 25;
+
+  
+    if (pass.match(/[A-Z]/)) strength += 25;
+
+   
+    if (pass.match(/[0-9]/)) strength += 25;
+
+ 
+    if (pass.match(/[@$!%*?&#]/)) strength += 25;
+
+
+   
+    fill.style.width = strength + "%";
+
+   
+    if (strength <= 25) {
+        fill.style.background = "red";
+        text.innerHTML = "Weak Password";
+        text.style.color = "red";
+
+    } else if (strength <= 50) {
+        fill.style.background = "orange";
+        text.innerHTML = "Medium Password";
+        text.style.color = "orange";
+
+    } else if (strength <= 75) {
+        fill.style.background = "blue";
+        text.innerHTML = "Strong Password";
+        text.style.color = "blue";
+
+    } else {
+        fill.style.background = "green";
+        text.innerHTML = "Very Strong Password";
+        text.style.color = "green";
+    }
+});
+
+
+
+function submitForm() {
+
+}
+</script>
+
+</body>
+</html>
